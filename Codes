@@ -1,0 +1,66 @@
+--[[
+This is made by Roblox hacking idk with all codes, Like and subscribe!
+]]--
+
+------------Minimize and close--------------
+Close: 
+
+Application.Exit();
+-------------------
+Minimize:
+
+WindowState = FormWindowState.Minimized;
+
+------------Execute and attach--------------
+Execute:
+
+MainAPI.Execute(FastColoredTextBox1.Text();
+-----------------------------
+Attach:
+
+MainAPI.Inject();
+
+------------Functions + Listbox + Refresh-------------
+List Box:
+
+fastColoredTextBox1.Text = File.ReadAllText($"./Scripts/{listBox1.SelectedItem}");
+ 
+Refresh:
+ 
+listBox1.Items.Clear();//Clear Items in the LuaScriptList
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.txt");
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.lua");
+ 
+ 
+Functions:
+ 
+public static void PopulateListBox(ListBox lsb, string Folder, string FileType)
+        {
+            DirectoryInfo dinfo = new DirectoryInfo(Folder);
+            FileInfo[] Files = dinfo.GetFiles(FileType);
+            foreach (FileInfo file in Files)
+            {
+                lsb.Items.Add(file.Name);
+            }
+        }
+        
+     
+ --------------Open File----------------
+ OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                openFileDialog1.Title = "Open";
+                fastColoredTextBox1.Text = File.ReadAllText(openFileDialog1.FileName);
+            }
+
+------------Save File-------------------
+SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream s = File.Open(saveFileDialog1.FileName, FileMode.CreateNew))
+                using (StreamWriter sw = new StreamWriter(s))
+                {
+                    sw.Write(fastColoredTextBox1.Text);
+                }
+            }
+     
